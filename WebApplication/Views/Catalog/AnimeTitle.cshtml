@@ -1,0 +1,111 @@
+﻿@using Microsoft.EntityFrameworkCore.Infrastructure
+@{
+    Layout = "_Layout";
+}
+@model WebApplication.ViewModels.TitleViewModel
+<body>
+<link rel="stylesheet" type="text/css" href="~/css/animetitle.css">
+<div class="op80" id="myanimelist">
+    <div id="content">
+        <div class="container">
+            <div class="container-left">
+                <h3>
+                    @Model.TitleAndScore.Anime.ShortName
+                </h3>
+                <img class="profile-img img-thumbnail di-b" src="@Model.TitleAndScore.Anime.PhotoPath">
+                <a id="add-list" class="di-b ta-c  add-list-space" onclick="myFunction()">
+                    <button type="button" class="btn btn-outline-dark">Add to list</button>
+                </a>
+                <p id="add-list-item">
+                </p>
+            </div>
+            <div class="container-right">
+                <table class="table-primary">
+                    <thead>
+                    <tr>
+                        <th scope="col">
+                            <h3>Rank</h3>
+                        </th>
+                        <th scope="col">
+                            <h3>Score</h3>
+                        </th>
+                        <th scope="col">
+                            <h3>Members</h3>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <h3>@Model.Rank</h3>
+                        </td>
+                        <td>
+                            <h3 class="di-ib">@Model.TitleAndScore.Score</h3>
+                            <span class="star material-icons material-icons-outlined di-ib">
+                                star_rate
+                            </span>
+                        </td>
+                        <td>
+                            @if (Model.TitleAndScore.Anime.AnimeRatings is not null)
+                            {
+                                <h3>@Model.TitleAndScore.Anime.AnimeRatings.Count()</h3>
+                            }
+                            else
+                            {
+                                <h3> 0 </h3>
+                            }
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <h4 class="syn-f">Synopsis</h4>
+                <div>
+                    <text>@Model.TitleAndScore.Anime.Description</text>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+        var activities = document.getElementById("add-list");
+        activities.addEventListener("click", function() {
+            if (typeof activities.IsOpen == 'undefined' || activities.IsOpen == false) {
+                addActivityItem();
+                activities.IsOpen = true;
+            } else {
+                deleteActivityItem();
+                activities.IsOpen = false;
+            }
+            console.log();
+        });
+
+        function addActivityItem() {
+            document.getElementById("add-list-item").innerHTML = `
+                        <div class="di-b mt20">
+                            <div>
+                                <div class="input-group">
+                                    <input type="number" required max-value="10" type="text" class="form-control" placeholder="Your score">
+                                    <span class="input-group-text">/10</span>
+                                </div>
+                            </div>
+                            <div>
+
+                            </div>
+                            <div>
+                                <div class="input-group">
+                                    <input type="number" required max-value="10" type="text" class="form-control" placeholder="Episode seen">
+                                    <span class="input-group-text">/200</span>
+                                </div>
+                            </div>
+                            <div>
+
+                            </div>
+                        </div>`;
+        }
+
+        function deleteActivityItem() {
+            document.getElementById("add-list-item").innerHTML = ``;
+        }
+    </script>
+</body>

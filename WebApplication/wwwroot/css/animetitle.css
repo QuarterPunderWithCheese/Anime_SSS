@@ -1,0 +1,173 @@
+﻿a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #c7c7c7;
+}
+
+body {
+    background-image: url(https://i.pinimg.com/originals/29/cb/95/29cb95ffecef69800e67b8738f0e00bc.jpg);
+    background-color: #cccccc;
+}
+
+#content {
+    background-color: #fff;
+    border-color: #ebebeb;
+    border-style: solid;
+    border-width: 0 1px 1px;
+    padding: 5px 10px 10px;
+    position: relative;
+}
+
+.container {
+    display: table;
+    width: 100%;
+}
+
+.profile-img {
+    width: 70%;
+}
+
+.profile-btn {
+    margin-top: 20px;
+}
+
+.btn-outline-primary {
+    color: black;
+    border-color: black;
+}
+
+.btn-outline-primary:hover {
+    background-color: darkgrey;
+    border-color: black;
+}
+
+.di-ib {
+    display: inline-block!important;
+}
+
+.di-b {
+    display: block!important;
+}
+
+.fl-l {
+    float: left!important;
+}
+
+.di-b {
+    display: block!important;
+}
+
+.c-b {
+    color: black;
+}
+
+.profile-link {
+    text-decoration: none;
+    color: black;
+}
+
+.profile-link:hover {
+    text-decoration: none;
+    color: darkgrey;
+}
+
+.container .container-right {
+    border-left: #cac4c4 1px solid;
+    display: table-cell;
+    padding-left: 8px;
+    vertical-align: top;
+    width: 70%;
+}
+
+.content .container-left {
+    border-right: #cac4c4 1px solid;
+    display: table-cell;
+    padding: 8px 8px 8px 0;
+    vertical-align: top;
+    width: 30%;
+}
+
+.mt10 {
+    margin-top: 10px!important;
+}
+
+.list-group {
+    margin-top: 10%;
+}
+
+.profile-list-block {
+    padding-bottom: 10px;
+    border-bottom: #cac4c4 1px solid;
+}
+
+.profile-list-img {
+    width: 60px;
+    border: #dddada 1px solid;
+}
+
+.watched-scored {
+    font-size: 15px;
+}
+
+.op80 {
+    opacity: 80%;
+}
+
+.add-list-space {
+    margin-left: 90px;
+    margin-top: 20px;
+}
+
+.input-group {
+    width: 240px;
+}
+
+.input-group-text {
+    width: 80px;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+h3 {
+    margin-left: 40px;
+}
+
+.syn-f {
+    border-bottom: #c7c7c7 1px solid;
+}
+
+.star {
+    color: rgb(238, 238, 63);
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+#header-img {
+    background: url('http://www.kodhus.com/freecourse-images/header-image.jpg');
+    background-size: cover;
+    width: 20%;
+    image-resolution: normal    ;
+    border-radius: 50%;
+}
+
+a#signin {
+    outline: none;
+    padding: 20px;
+    text-decoration: none;
+}

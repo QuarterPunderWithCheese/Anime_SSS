@@ -1,0 +1,118 @@
+﻿@{
+    Layout = "_Layout";
+}
+@using Microsoft.AspNetCore.Identity
+@model WebApplication.ViewModels.ProfileModelView
+<body>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style>
+    #map {
+      height: 100%;
+    }
+    
+    /* Optional: Makes the sample page fill the window. */
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+</style>
+<link rel="stylesheet" type="text/css" href="~/css/profile.css">
+<div class="op80" id="myanimelist">
+    <div id="content">
+        <div class="container">
+            <div class="container-left">
+                <h3>
+                    @Model.UserName
+                </h3>
+                <img class="profile-img img-thumbnail" src="~/Avatars/@Model.Avatar">
+                <div class="profile-btn">
+                    <a asp-controller="Profile" asp-action="AnimeList" asp-route-name="@Model.UserName">
+                        <button type="button" class="btn btn-outline-primary">Anime list</button>
+                    </a>
+                </div>
+                <br>
+                <div>
+                    <a class="profile-link" href="#">
+                        <div class="di-ib">
+                            <span class="material-icons material-icons-outlined">
+                                chat
+                            </span>
+                        </div>
+                        <div class="di-ib">
+                            Chat
+                        </div>
+                    </a>
+                </div>
+                <br>
+                <div>
+                    <a class="profile-link" asp-controller="Profile" asp-action="EditProfile">
+                        <div class="di-ib">
+                            <span class="material-icons material-icons-outlined">
+                                manage_accounts
+                            </span>
+                        </div>
+                        <div class="di-ib">
+                            Edit Profile
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="container-right">
+                <h3 class="mt10">
+                    Your last anime watched:
+                </h3>
+                @{
+                    string AnimeName;
+                    string AnimePath;
+                    if (Model.LastAnime != null)
+                    {
+                        AnimeName = Model.LastAnime.ShortName;
+                        AnimePath = Model.LastAnime.PhotoPath;
+                    }
+                    else
+                    {
+                        AnimeName = "U dont have a last watched anime";
+                        AnimePath = "Default.png";
+                    }
+                }
+                <div id="map"></div>
+                <div class="profile-list-block">
+                    <a class="di-ib" href="#">
+                        <img alt="anime" class="profile-list-img" src="~/img/@AnimePath">
+                        
+                    </a>
+                    <div class="profile-list-data di-ib">
+                        <a class="c-b" href="#">
+                            @AnimeName
+                        </a>
+                        <h5 class="text-secondary watched-scored">
+
+                        </h5>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let map;
+
+function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8,
+    });
+}
+</script>
+<script
+
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKToaIhV5M5hYAcC-WjI8tTmOlhlZMgrg&callback=initMap&libraries=&v=weekly"
+    async
+></script>
+</body>

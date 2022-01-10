@@ -1,0 +1,250 @@
+﻿@using WebApplication.ViewModels
+@using Microsoft.EntityFrameworkCore
+@model RegisterViewModel;
+@{
+    Layout = null;
+    
+}
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="~/css/Signup.css">
+    <script src="https://kit.fontawesome.com/3f8996b2ae.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<style>
+    .error-div {
+        display: flex;
+    }
+    .error-message {
+        margin: 0!important;
+    }
+    
+    .error-icon {
+        padding-top: 3px;
+    }
+    #error-block {
+        margin-bottom: 16px;
+    }
+    input.auth-input.error {
+         border-bottom: 1px solid #990000;
+     }
+</style>
+<body>
+<div class="container">
+    <div class="content first-content">
+        <div class="first-column">
+            <h2 class="title title-primary">Welcome!</h2>
+            <p class="description decription-primary">If you're already part of Akame Ga Kill World</p>
+            <p class="description decription-primary">please login to your account</p>
+            <button class="btn btn-primary" id="signin">sign in</button>
+        </div>
+        <!-- Fim da div first-column-->
+        <div class="second-column">
+            <h2 class="title title-secondary">Create account</h2>
+            <div class="social-media">
+                <ul class="list-social-media">
+                    <a class="link-social-media" href="#">
+                        <li class="item-social-media"><i class="fab fa-google"></i></li>
+                    </a>
+                </ul>
+            </div>
+            <div class="social-media">
+                <ul class="list-social-media">
+                    <a class="link-social-media" asp-controller="Home" asp-action="Index">
+                        <li class="item-social-media"><span class="material-icons material-icons-outlined">
+                            home
+                        </span></li>
+                    </a>
+                </ul>
+            </div>
+
+            <!-- Fim da div social-media -->
+            <p class="description decription-secondary">or use your email for registration:</p>
+            <div id="error-block"></div>
+            <h6 id="timer"></h6>
+            <div id="loading"></div>
+            <form method="POST" name="signUp" class="form register-form" id="register-form" onsubmit="return false;">
+                <label class="label-input" for="">
+                    <i class="zmdi far fa-user icon-modify"></i>
+                    <input class="auth-input" required type="text" placeholder="Name" name="name" id="name">
+                </label>
+                <label class="label-input" for="">
+                    <i class="zmdi far fa-envelope icon-modify"></i>
+                    <input class="auth-input" type="email" placeholder="Email" name="email" id="email">
+                </label>
+                <label class="label-input" for="">
+                    <i class="zmdi fas fa-lock icon-modify"></i>
+                    <input class="auth-input" type="password" placeholder="Password" name="pass" id="pass">
+                </label>
+                <button class="btn btn-secondary" id="signup-button">sign up</button>
+            </form>
+        </div>
+        <!-- Fim da div second-column -->
+    </div>
+    <!-- Fim da div content first-content -->
+    <div class="content second-content">
+        <div class="first-column">
+            <h2 class="title title-primary">Hello, friend!</h2>
+            <p class="description decription-primary">Enter your personal details</p>
+            <p class="description decription-primary">and start the journey with us</p>
+            <button class="btn btn-primary" id="signup">sign up</button>
+        </div>
+        <!-- Fim da div first-column-->
+        <div class="second-column">
+            <h2 class="title title-secondary">Sign in to explore</h2>
+            <div class="social-media">
+                <ul class="list-social-media">
+                    <a class="link-social-media" href="#">
+                        <li class="item-social-media"><i class="fab fa-google"></i></li>
+                    </a>
+                </ul>
+            </div>
+            <div class="social-media">
+                <ul class="list-social-media">
+                    <a class="link-social-media" asp-controller="Home" asp-action="Index">
+                        <li class="item-social-media"><span class="material-icons material-icons-outlined">
+                            home
+                        </span></li>
+                    </a>
+                </ul>
+            </div>
+            <!-- Fim da div social-media -->
+            <p class="description decription-secondary">or use your email account:</p>
+            <form class="form" asp-action="Login">
+                <label class="label-input" for="">
+                    <i class="far fa-envelope icon-modify"></i>
+                    <input type="email" placeholder="Email" name="Email">
+                </label>
+                <label class="label-input" for="">
+                    <i class="fas fa-lock icon-modify"></i>
+                    <input type="password" placeholder="Password" name="Password">
+                </label>
+                <a class="link-forgot" href="#">forgot your password?</a>
+                <button class="btn btn-secondary">sign in</button>
+            </form>
+        </div>
+        <!-- Fim da div second-column -->
+    </div>
+    <!-- Fim da div content second-content -->
+</div>
+<!-- Fim da div container -->
+<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+<script src="~/js/Signup.js"></script>
+
+<script>
+let signup_button = document.getElementById('signup-button');
+
+signup_button.addEventListener("click", () => {
+    let form = document.getElementById('register-form');
+    let name = form.name.value;
+    let email = form.email.value;
+    let pass = form.pass.value;
+
+    for(let i=0; i<form.elements.length; i++) {
+        let input = form.elements[i];
+        input.classList.remove('error');
+    }
+    let checkEmail = /^(([^<>()\[\]\\.,;:\s@@"]+(\.[^<>()\[\]\\.,;:\s@@"]+)*)|(".+"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)
+    let checkPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(pass);
+
+    function createMessage(zmdi, message) {
+        let div = document.createElement('div');
+        div.className = 'error-div';
+
+        let i = document.createElement('i');
+        i.classList.add('zmdi', zmdi, 'error-icon');
+
+        let h6 = document.createElement('h6');
+        h6.className = 'error-message';
+        h6.innerHTML = message;
+
+        div.appendChild(i);
+        div.appendChild(h6);
+        error_block.appendChild(div);
+    }
+
+    function checkInputs() {
+        let check = true;
+
+        for(let i=0; i<form.elements.length; i++) {
+            let input = form.elements[i];
+            if (input.type !== 'submit' && input.value.length < 1) {
+                check = false;
+                input.classList.add('error');
+            }
+        }
+
+        if (!check) {
+            createMessage('zmdi-close','Fill in all the fields');
+            return false;
+        }
+        if (!checkEmail) {
+            check = false;
+            createMessage('zmdi-close','Invalid email');
+            form.email.classList.add('error');
+        }
+        if (!checkPass) {
+            check = false;
+            createMessage('zmdi-close','Invalid password' +
+                '</br>The password must be at least 6 characters long and contain at least one number, one uppercase and one lowercase letter');
+            form.pass.classList.add('error');
+        }
+        return check;
+    }
+
+    let error_block = document.getElementById('error-block');
+    while (error_block.firstChild) {
+        error_block.removeChild(error_block.lastChild);
+    }
+
+    let check = checkInputs();
+    if (!check)
+        return;
+    let fD = new FormData();
+    fD.append('Email', email);
+    fD.append('Name', name);
+    fD.append('Password', pass);
+
+    $('#loading').addClass('processing');
+    $.ajax({
+        type: 'POST',
+        url: '@Url.Action("Register")',
+        data: fD,
+         headers: {
+                    RequestVerificationToken: $('input:hidden[name="__RequestVerificationToken"]').val()
+                },
+        processData: false,
+        contentType: false,
+        success: function(res, status, xhr) {
+            $('#loading').removeClass('processing');
+            let result = xhr.getResponseHeader("registration_result")
+            if (result === "ok") {
+                createMessage('zmdi-check','You have successfully registered in our site');
+                Timer();
+            }
+            else if (result === "failed") {
+                createMessage('zmdi-close','This email address already exists</br>Please choose a unique one');
+                form.email.classList.add('error');
+            }
+            else // "error"
+                createMessage('zmdi-close','An error occurred while registering</br>Please try again')
+        }
+    })
+
+    let timer = 4;
+    function Timer() {
+        timer--;
+        document.getElementById("timer").innerHTML = 'Redirecting to SignIn: ' + timer;
+        if (timer === 0) {
+            location.replace('/Profile/Profile')
+        }
+        setTimeout(() => Timer(), 1000);
+    }
+});
+</script>
+</body>

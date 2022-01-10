@@ -1,0 +1,81 @@
+﻿@{
+    Layout = "_Layout";
+}
+<body>
+<link rel="stylesheet" type="text/css" href="~/css/editprofile.css">
+<div class="op80" id="myanimelist">
+    <div id="content">
+        <div class="container">
+            <div class="container-left">
+                <h3>
+                    User name Profile
+                </h3>
+                <img class="profile-img img-thumbnail" src="https://i.redd.it/rukmltb4ptw01.png">
+                <div class="profile-btn">
+                    <a asp-controller="Profile" asp-action="AnimeList">
+                        <button type="button" class="btn btn-outline-primary">Anime list</button>
+                    </a>
+                </div>
+                <br>
+                <div>
+                    <a class="profile-link" href="#">
+                        <div class="di-ib">
+                            <span class="material-icons material-icons-outlined">
+                                chat
+                            </span>
+                        </div>
+                        <div class="di-ib">
+                            Chat
+                        </div>
+                    </a>
+                </div>
+                <br>
+                <div>
+                    <a class="profile-link" asp-controller="Profile" asp-action="EditProfile">
+                        <div class="di-ib">
+                            <span class="material-icons material-icons-outlined">
+                                manage_accounts
+                            </span>
+                        </div>
+                        <div class="di-ib">
+                            Edit Profile
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="container-right">
+                <h3>
+                    Edit your information
+                </h3>
+                <div class="input-group mb-3">
+                    <span class="input-group-text wi120" id="inputGroup-sizing-default">Name</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text wi120" id="inputGroup-sizing-default">Mail</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text wi120" id="inputGroup-sizing-default">Old Password</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text wi120" id="inputGroup-sizing-default">Password</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text wi120" id="inputGroup-sizing-default">Re Password</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group mb-3">
+                    <input type="button" class="btn btn-outline-dark wi120" value="Edit Image" id="loadFileXml" onclick="document.getElementById('file').click();"/>
+                    <area type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    <input type="file" style="display:none;" id="file" name="file"/>
+                    <label class="input-group-text" for="inputfile">Upload</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>DomainModel</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+
+      <PackageReference Include="microsoft-web-helpers" Version="2.1.20710.2" />
+
+      <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0-preview.4.21253.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="MongoDB.Bson, Version=2.13.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\..\..\..\.nuget\packages\mongodb.bson\2.13.0-beta1\lib\netstandard2.1\MongoDB.Bson.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>

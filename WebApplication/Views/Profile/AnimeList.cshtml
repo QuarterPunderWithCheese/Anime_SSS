@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "_Layout";
+}
+@using WebApplication.ViewModels
+@model WebApplication.ViewModels.ProfileListViewModel;
+<body class="profilelist">
+<link rel="stylesheet" type="text/css" href="~/css/AnimeList.css">
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">AnimeTitle</th>
+            <th scope="col">Score</th>
+        </tr>
+        </thead>
+        <tbody>
+        @{
+            int i = 0;
+            @foreach (var title in Model.AnimsAndScores)
+            {
+                i++;
+                <tr>
+                    <th scope="row">@i</th>
+
+                    <td>
+                        <a asp-controller="Catalog" asp-action="AnimeTitle" asp-route-id="@title.Anime.Id">@title.Anime.ShortName</a>
+                    </td>
+                    <td>@title.Score</td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>
+</body>

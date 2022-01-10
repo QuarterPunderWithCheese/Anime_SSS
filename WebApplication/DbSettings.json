@@ -1,0 +1,5 @@
+﻿{
+  "ConnectionStrings": {
+    "DbConnection": "User ID=uouumvifuppiwb;Password=93dad03639fa205b0908511b94566b93e56b98f968d00186fabce5a8b5cadbf4;Host=ec2-54-73-58-75.eu-west-1.compute.amazonaws.com;Port=5432;Database=d1d16lmlsf248r;SslMode=Require;Trust Server Certificate=true;"
+  }
+}

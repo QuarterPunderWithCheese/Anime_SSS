@@ -1,0 +1,68 @@
+﻿@{
+    Layout = "_Layout";
+}
+@model WebApplication.ViewModels.TopViewModel
+<body>
+<link rel="stylesheet" type="text/css" href="~/css/top.css">
+<div id="myanimelist">
+    <h2>Top anime series</h2>
+    <table class="table table-striped table-hover top-ranking-table">
+        <thead>
+        <tr>
+            <th scope="col">Rank</th>
+            <th class="" scope="col">Title</th>
+            <th scope="col">Score</th>
+            @* <th scope="col">Your Score</th> *@
+            <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var anime in Model.AnimsAndScores)
+            {
+                <tr>
+                    <td class="rank ac" valign="top">
+                        <span class="lightLink top-anime-rank-text rank1">@anime.Rank</span>
+                    </td>
+                    <td class="title al word-break va-t">
+                        <a class="mr8 ml12 fl-l" style="position: relative;" href="#">
+                            <img width="50" height="70" alt="@anime.Anime.ShortName" src="@anime.Anime.PhotoPath">
+                        </a>
+                        <div class="detail">
+                            <div class="di-ib clearfix ">
+                                <h3 class="fw-b fs14 anime_ranking_h3 fl-l">
+                                    <a asp-controller="Catalog" asp-action="AnimeTitle" asp-route-id="@anime.Anime.Id">@anime.Anime.ShortName</a>
+                                </h3>
+                            </div>
+                            <br>
+                            <div class="information di-ib mt4">
+                                TV (@anime.Anime.NumberOfAllSeries eps)<br> 
+                                @if (anime.Anime.AnimeRatings is not null)
+                                {
+                                    <text>@anime.Anime.AnimeRatings.Count() members</text>
+                                }
+                                else
+                                {
+                                    <text>0 members</text>
+                                }
+                            </div>
+                        </div>
+                    </td>
+                    <td class="score ac fs14">
+                        <div class="js-top-ranking-score-col di-ib al mt20" style="width: 48.8px;"><i class="icon-score-star mr4 on"></i><span class="text on score-label score-9">@anime.Score</span></div>
+                    </td>
+                    @* <td class="your-score ac fs14"> *@
+                    @*     <div class="js-top-ranking-your-score-col di-ib al mt20" style="width: 43.4125px;"> <a href="#" class=""><i class="icon-score-star mr4 "></i><span class="text  score-label score-na">N/A</span></a> *@
+                    @*     </div> *@
+                    @* </td> *@
+                    <td class="status ac">
+                        <a href="#" class="mt20 btn-addEdit-large btn-anime-watch-status js-anime-watch-status notinmylist">
+                            <i class="fa fa-plus-square-o mr4"></i>Add to list
+                        </a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
+</body>

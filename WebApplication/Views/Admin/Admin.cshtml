@@ -1,0 +1,93 @@
+@using Microsoft.EntityFrameworkCore
+@model WebApplication.ViewModels.AddRoleViewModel
+@{
+    Layout = "_Layout";
+
+}
+<link rel="stylesheet" type="text/css" href="~/css/animetitle.css">git
+<body>
+<style>
+    .show {display: none;}
+</style>
+
+<div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action">
+        Add Anime
+    </a>
+    <a href="#" onclick="showAdd()" class="list-group-item list-group-item-action">Add to role</a>
+    <form asp-controller="Admin" asp-action="AddRole" id="role-list" class="show">
+        <div class="mb-3">
+            
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input name="Email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="form-group">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <select name="Role" id="pickup-delivery">
+                    <option value="">
+                        <label class="btn btn-secondary active">
+                            <button name="options" id="option1" autocomplete="off" checked> Choose role to add</button>
+                        </label>
+                    </option>
+                    <option value="Ban">
+                        <label class="btn btn-secondary active">
+                            <button name="options" id="option2" autocomplete="off" checked> Ban</button>
+                        </label>
+                    </option>
+                    <option value="Admin">
+                        <label class="btn btn-secondary">
+                            <button name="options" id="option3" autocomplete="off"> Admin</button>
+                        </label>
+                    </option>
+                    <option value="User">
+                        <label class="btn btn-secondary">
+                            <button name="options" id="option3" autocomplete="off"> User</button>
+                        </label>
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group form-button">
+            <button type="submit" name="checkout-button" id="checkout-button" class="auth-input form-submit" value="Change Role"></button>
+        </div>
+    </form>
+    <a href="#" onclick="show()" id="logs" class="list-group-item list-group-item-action">Show logs</a>
+    <div id="logs-list" class="show">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Text</th>
+                <th scope="col">Time</th>
+            </tr>
+            </thead>
+            <tbody id="logi">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+      function show(){
+          document.getElementById("logi").innerHTML = "";
+        $.ajax({  
+                     url: 'https://adminssswebapi.herokuapp.com/api/GetLogs',  
+                     type: 'GET',
+                     dataType: 'json',
+                     success: function (data, textStatus, xhr) {  
+                         for (var i = 0; i < data.length; i++){
+                             document.getElementById("logi").innerHTML += '<tr><th scope="row">'+data[i].id+'</th><td>'+data[i].text+'</td><td>'+data[i].time+'</td></tr>'
+                             }
+                     },  
+                     error: function (xhr, textStatus, errorThrown) {  
+                         console.log('Error in Operation');  
+                     }  
+                 }); 
+          document.getElementById("logs-list").classList.toggle("show");
+      }
+      function showAdd(){
+           document.getElementById("role-list").classList.toggle("show");
+      }
+  </script>
+</body>

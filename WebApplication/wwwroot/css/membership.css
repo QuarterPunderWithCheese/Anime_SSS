@@ -1,0 +1,36 @@
+﻿.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+body {
+    background-image: url(https://wallpaperaccess.com/full/478288.jpg);
+    background-color: #cccccc;
+}
+
+.op80 {
+    opacity: 80%;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+#header-img {
+    background: url('http://www.kodhus.com/freecourse-images/header-image.jpg');
+    background-size: cover;
+    width: 20%;
+    image-resolution: normal;
+    border-radius: 50%;
+}
+
+a#signin {
+    outline: none;
+    padding: 20px;
+    text-decoration: none;
+}
